@@ -1,0 +1,56 @@
+import 'package:e_commerce_admin_pannel/common/widgets/breadcrumbs/breadcrumbs_with_heading.dart';
+import 'package:e_commerce_admin_pannel/common/widgets/containers/rounded_container.dart';
+import 'package:e_commerce_admin_pannel/common/widgets/data_table/table_header.dart';
+import 'package:e_commerce_admin_pannel/features/shop/screens/banner/all_banners/table/data_table.dart';
+import 'package:e_commerce_admin_pannel/routes/routes.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../../../common/widgets/loaders/loader_animation.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../controllers/banner/banner_controller.dart';
+
+
+class BannerMobileScreen extends StatelessWidget{
+  const BannerMobileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = BannerController.instance;
+
+    return Scaffold(
+        body: SingleChildScrollView(
+            child: Padding(
+                padding: const EdgeInsets.all(TSizes.defaultSpace),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      // Breadcrumbs
+                      const TBreadcrumbsWithHeading(heading: 'Banners', breadcrumbItems: ['Banners']),
+                      const SizedBox(height: TSizes.spaceBtwSections,),
+
+                      TRoundedContainer(
+                        child: Column(
+                          children: [
+                            // Table Header
+                            TTableHeader(buttonText: 'Create New Banner',onPressed: ()=>Get.toNamed(TRoutes.createBanner),),
+                            const SizedBox(height: TSizes.spaceBtwItems,),
+
+                            // Table
+                            Obx(() {
+                              if(controller.isLoading.value) return TLoaderAnimation();
+                              return const BannerTable();
+                            }),
+                          ],
+                        ),
+                      )
+                    ]
+                )
+            )
+        )
+    );
+
+  }
+
+}

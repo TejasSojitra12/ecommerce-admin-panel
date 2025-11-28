@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+
+import '../../../../../../common/widgets/breadcrumbs/breadcrumbs_with_heading.dart';
+import '../../../../../../routes/routes.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../controllers/brand/create_brand_controller.dart';
+import '../widgets/create_brand_form.dart';
+
+class CreateBrandTabletScreen extends StatelessWidget{
+  const CreateBrandTabletScreen({super.key});
+
+  @override
+  Widget build (BuildContext context){
+    final controller = CreateBrandController.instance;
+
+    return const Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(padding: EdgeInsets.all(TSizes.defaultSpace),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TBreadcrumbsWithHeading(returnToPreviousScreen: true,heading: 'Create Brand', breadcrumbItems: [TRoutes.brands,'Brands']),
+              SizedBox(height: TSizes.spaceBtwSections,),
+
+              // Form
+              CreateBrandForm(),
+            ],
+          ),),
+      ),
+    );
+  }
+}
