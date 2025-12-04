@@ -1,11 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:e_commerce_admin_pannel/common/widgets/data_table/paginated_data_table.dart';
 import 'package:e_commerce_admin_pannel/features/shop/controllers/order/order_controller.dart';
-import 'package:e_commerce_admin_pannel/features/shop/screens/order/all_orders/table/table_source.dart';
 import 'package:e_commerce_admin_pannel/utils/constants/sizes.dart';
 import 'package:e_commerce_admin_pannel/utils/device/device_utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'table_source.dart';
 
 class DashboardOrderTable extends StatelessWidget{
   const DashboardOrderTable({super.key});

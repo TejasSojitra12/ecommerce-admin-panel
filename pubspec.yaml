@@ -47,6 +47,8 @@ dependencies:
   firebase_auth: ^5.1.4
   cloud_firestore: ^5.2.1
   firebase_storage: ^12.3.7
+  icons_launcher: ^2.0.0
+
 
 
 dev_dependencies:
@@ -87,3 +89,10 @@ flutter:
           weight: 600
         - asset: assets/fonts/urbanist/Urbanist-Bold.ttf
           weight: 800
+
+icons_launcher:
+  image_path: "assets/logos/t-store-splash-logo-black.png"
+  platforms:
+    web:
+      enable: true
+

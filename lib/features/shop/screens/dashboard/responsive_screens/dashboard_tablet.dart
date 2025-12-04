@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../controllers/dashboard/dashboard_controller.dart';
+import '../table/data_table.dart';
 import '../widgets/dashboard_card.dart';
 import '../widgets/pie_chart.dart';
 import '../widgets/weekly_sales.dart';
@@ -14,11 +15,13 @@ class DashboardTabletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = DashboardController.instance;
-    return  Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
+        child: Padding(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Heading
               Text(
@@ -28,15 +31,19 @@ class DashboardTabletScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
-               Row(
-                children: [
+
                   Row(
                     children: [
                       Expanded(
                         child: Obx(
-                              ()=> TDashboardCard(
+                          () => TDashboardCard(
                             title: 'Sales total',
-                            subTitle: '\$${controller.orderController.allItems.fold(0.0, (previousValue, element) => previousValue + element.totalAmount,).toStringAsFixed(2)}',
+                            subTitle:
+                                '\$${controller.orderController.allItems.fold(
+                                      0.0,
+                                      (previousValue, element) =>
+                                          previousValue + element.totalAmount,
+                                    ).toStringAsFixed(2)}',
                             stats: 25,
                           ),
                         ),
@@ -46,28 +53,29 @@ class DashboardTabletScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(
-                              ()=> TDashboardCard(
+                          () => TDashboardCard(
                             title: 'Average Order Value',
-                            subTitle: '\$${(controller.orderController.allItems.fold(0.0, (previousValue, element) => previousValue + element.totalAmount)/ controller.orderController.allItems.length).toStringAsFixed(2)}',
+                            subTitle:
+                                '\$${(controller.orderController.allItems.fold(0.0, (previousValue, element) => previousValue + element.totalAmount) / controller.orderController.allItems.length).toStringAsFixed(2)}',
                             stats: 15,
                           ),
                         ),
                       ),
-
                     ],
                   ),
-                ],
+
+              const SizedBox(
+                height: TSizes.spaceBtwItems,
               ),
-              const SizedBox(height: TSizes.spaceBtwItems,),
-               Row(
-                children: [
+            
                   Row(
                     children: [
                       Expanded(
                         child: Obx(
-                              ()=> TDashboardCard(
+                          () => TDashboardCard(
                             title: 'Total Orders',
-                            subTitle: '\$${controller.orderController.allItems.length}',
+                            subTitle:
+                                '\$${controller.orderController.allItems.length}',
                             stats: 44,
                           ),
                         ),
@@ -77,37 +85,41 @@ class DashboardTabletScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(
-                              ()=> TDashboardCard(
+                          () => TDashboardCard(
                             title: 'Visitors',
-                            subTitle: '${controller.customerController.allItems.length}',
+                            subTitle:
+                                '${controller.customerController.allItems.length}',
                             stats: 2,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ],
+
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
               ),
-              const SizedBox(height: TSizes.spaceBtwSections,),
 
-                    /// Bar Graph
-                    const TWeeklySalesGraph(),
-                    const SizedBox(
-                      height: TSizes.spaceBtwSections,
-                    ),
 
-                    /// Orders
-                    const TRoundedContainer(),
+
+              /// Bar Graph
+              const TWeeklySalesGraph(),
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
+
+              /// Orders
+              TRoundedContainer(child: DashboardOrderTable()),
+
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 
               /// Pie Chart
-                   const OrderStatusPieChart()
+              TRoundedContainer(child: const OrderStatusPieChart())
             ],
-
           ),
-         ),
+        ),
       ),
     );
   }

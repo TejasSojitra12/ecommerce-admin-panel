@@ -45,7 +45,7 @@ class DashboardMobileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: TSizes.spaceBtwItems,
+                height: TSizes.spaceBtwItems,
               ),
               Obx(
                 () => TDashboardCard(
@@ -56,7 +56,7 @@ class DashboardMobileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: TSizes.spaceBtwItems,
+                height: TSizes.spaceBtwItems,
               ),
               Obx(
                 () => TDashboardCard(
@@ -66,7 +66,7 @@ class DashboardMobileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: TSizes.spaceBtwItems,
+                height: TSizes.spaceBtwItems,
               ),
               Obx(
                 () => TDashboardCard(
@@ -75,7 +75,9 @@ class DashboardMobileScreen extends StatelessWidget {
                   stats: 2,
                 ),
               ),
-
+              SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
               /// Bar Graph
               const TWeeklySalesGraph(),
               const SizedBox(
@@ -83,13 +85,14 @@ class DashboardMobileScreen extends StatelessWidget {
               ),
 
               /// Orders
-              const DashboardOrderTable(),
+              TRoundedContainer(child: DashboardOrderTable()),
+
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 
               /// Pie Chart
-              const OrderStatusPieChart()
+              TRoundedContainer(child: const OrderStatusPieChart())
             ],
           ),
         ),

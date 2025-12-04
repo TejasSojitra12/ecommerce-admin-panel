@@ -102,7 +102,7 @@ class DashboardDesktopScreen extends StatelessWidget {
                         ),
 
                         /// Orders
-                        DashboardOrderTable(),
+                        TRoundedContainer(child: DashboardOrderTable()),
                       ],
                     ),
                   ),
